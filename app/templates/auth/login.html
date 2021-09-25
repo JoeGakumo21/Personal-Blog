@@ -4,26 +4,51 @@
 Login
 {% endblock%}
 {%block content%}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}" />
+<!-- <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}"/> -->
+
+
 <div class="container">
-    <form method="POST">
-        <h3 class="text-center">Login</h3>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                placeholder="Enter email">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form onsubmit="event.preventDefault()" class="box">
+                    <h1>Login</h1>
+                    <p class="text-muted"> Please enter your login and password!</p>
+                  
+
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-muted">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-muted">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label text-muted" for="exampleCheck1">Remember me</label>
+                    </div>
+                    <p class="text-muted">Dont have an account?<a href="{{url_for('auth.sign_up')}}">SignUp</a>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary text-light">Submit</button>
+                    </div>
+
+                      <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-        </div>
-        <p>Dont have an account?<a href="{{url_for('auth.sign_up')}}">SignUp</a>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock%}
