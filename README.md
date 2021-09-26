@@ -32,7 +32,7 @@ Setup requirements
 - markdown2
 ---
 ## live link
-<a href="joepersonalblog.herokuapp.com/">Click to visit My personal Blog</a>
+Click to visit <a href="https://joepersonalblog.herokuapp.com/">My personal Blog</a>
 ---
 ###  Licence
 <a href="https://choosealicense.com/licenses/mit/">MIT Licence</a>
