@@ -5,5 +5,5 @@ from wtforms.validators import Required
 
 
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    bio = TextAreaField('Tell us more about youself.',validators = [Required()])
     submit = SubmitField('Submit')
