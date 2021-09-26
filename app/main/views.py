@@ -9,6 +9,7 @@ from ..models import User,Comment,Post,Like
 
 
 @main.route("/")
+@login_required
 def home():
     quotes = get_quote()
     posts = Post.query.all()
