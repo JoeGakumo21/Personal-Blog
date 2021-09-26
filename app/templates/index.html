@@ -3,6 +3,12 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Italianno&display=swap" rel="stylesheet">
 <style>
     body {
         background: url("{{url_for('static',filename='images/wallpaper-photos-31.jpg')}}") center/cover no-repeat;
@@ -11,76 +17,91 @@
 
 <h1 align="center">{% block header %}Posts{% endblock %}</h1>
 <div id="posts">
-    {% for post in posts %}
-    <div class="card border-dark">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <a href="/posts/{{post.user.username}}">Posted by: {{post.user.username}}</a>
-            <div>
-                <span id="likes-count-{{post.id}}">
-                    {{ post.likes|length }}</span>
-                {% if user.id in post.likes|map(attribute="author")|list %}
-                <i class="bi bi-hand-thumbs-up" id="like-button-{{post.id}}" onclick="like({{post.id}})"></i>
-                {% else %}
-                <i class="bi bi-hand-thumbs-up" id="like-button-{{post.id}}" onclick="like({{post.id}})"></i>
-                {% endif %} {% if user.id == post.author %}
-                <a href="/delete-post/{{post.id}}" class="delete" ><i class="fas fa-trash text-danger" style=" color:red">Delete</i></a>
+    <div class="row mb-3">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+            <div class="card border-dark">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>Posted by: {{post.user.username}}</h3>
+
+                    <div>
+                        <span id="likes-count-{{post.id}}">
+                            {{ post.likes|length }}</span>
+                        {% if user.id in post.likes|map(attribute="author")|list %}
+                        <i class="bi bi-hand-thumbs-up" id="like-button-{{post.id}}" onclick="like({{post.id}})"></i>
+                        {% else %}
+                        <i class="bi bi-hand-thumbs-up" id="like-button-{{post.id}}" onclick="like({{post.id}})"></i>
+                        {% endif %} {% if user.id == post.author %}
+                        <a href="/delete-post/{{post.id}}" class="delete"><i class="fas fa-trash text-danger"
+                                style=" color:red">Delete</i></a>
 
 
-                {% endif %}
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="card-text">
-
-                <h1>{{quotes.id}}</h1>
-                <h1>{{quotes.author}}</h1>
-                <hr>
-                <h2>{{quotes.quote}}</h2>
-                {{post.text}}
-            </div>
-            <br />
-            <div class="collapse" id="comments-{{post.id}}">
-                <div class="card">
-                    <div class="card-body" id="comments-expanded-{{post.id}}">
-                        {% for comment in post.comments %}
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <a href="/posts/{{comment.user.username}}">{{comment.user.username}}</a>:
-                                {{comment.text}}
-                            </div>
-                            <div>
-                                <small class="text-dark"> Commented on:{{comment.date_created.today().strftime('%Y-%m-%d
-                                    %H;%M')}}</small>
-                                {% if user.id == comment.author or user.id == post.author %}
-                                <a href="/delete-post/{{post.id}}" class="dropdown-item"><i
-                                        class="fas fa-trash text-danger" style="color: red;">Delete</i></a>
-
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
+                <div class="card-body">
+                    <div class="card-text">
+
+                        <h1
+                            style=" color: orangered;font-family: 'Italianno', cursive;">
+                            {{quotes.id}}</h1>
+                        <h1
+                            style="color: orangered;font-family: 'Charm', cursive;
+                            font-family: 'Italianno', cursive;">
+                            {{quotes.author}}</h1>
+                        <hr>
+                        <h2 style="font-family: 'Charm', cursive;
+                        font-family: 'Italianno', cursive;"">{{quotes.quote}}</h2>
+                        {{post.text}}
+                    </div>
+                    <br />
+                    <div class="collapse" id="comments-{{post.id}}">
+                        <div class="card">
+                            <div class="card-body" id="comments-expanded-{{post.id}}">
+                                {% for comment in post.comments %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <a href="/posts/{{comment.user.username}}">{{comment.user.username}}</a>:
+                                        {{comment.text}}
+                                    </div>
+                                    <div>
+                                        <small class="text-dark"> Commented
+                                            on:{{comment.date_created.today().strftime('%Y-%m-%d
+                                            %H;%M')}}</small>
+                                        {% if user.id == comment.author or user.id == post.author %}
+                                        <a href="/delete-post/{{post.id}}" class="dropdown-item"><i
+                                                class="fas fa-trash text-danger" style="color: red;">Delete</i></a>
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text">
+                        {% if post.comments|length > 0 %}
+                        <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+                            <small>View {{post.comments|length}} Comments</small>
+                        </a>
+                        {% else %}
+                        <small class="text-muted">No Comments</small>
+                        {% endif %}
+                    </p>
+                    <form class="input-group mb-3" method="POST" action="/create-comment/{{post.id}}">
+                        <input type="text" id="text" name="text" class="form-control"
+                            placeholder="Comment something!" />
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </form>
+                </div>
+                <div class="card-footer text-dark">
+                    Post created on: {{post.date_created.today().strftime('%Y-%m-%d %H;%M')}}
+                </div>
             </div>
-            <p class="card-text">
-                {% if post.comments|length > 0 %}
-                <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
-                    <small>View {{post.comments|length}} Comments</small>
-                </a>
-                {% else %}
-                <small class="text-muted">No Comments</small>
-                {% endif %}
-            </p>
-            <form class="input-group mb-3" method="POST" action="/create-comment/{{post.id}}">
-                <input type="text" id="text" name="text" class="form-control" placeholder="Comment something!" />
-                <button type="submit" class="btn btn-primary">Comment</button>
-            </form>
         </div>
-        <div class="card-footer text-dark">
-            Post created on: {{post.date_created.today().strftime('%Y-%m-%d %H;%M')}}
-        </div>
+
+        <br> {% endfor %}
     </div>
-    <br> {% endfor %}
 </div>
 {% block footer %}
 <div align="center">
@@ -98,8 +119,8 @@
             <!-- Section: Social media -->
             <section class="mb-4">
                 <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/pg/facebook/photos/" role="button"><i
-                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/pg/facebook/photos/"
+                    role="button"><i class="fab fa-facebook-f"></i></a>
 
                 <!-- Twitter -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/?lang=en" role="button"><i
@@ -126,10 +147,14 @@
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <b><div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-           <span style=" color:rebeccapurple"> © 2021</span> Copyright:Joe<span style=" color:orangered">Gakumo</span><span style=" color:palegreen"><i class="fas fa-heart"></i></span>
-          
-        </div></b>
+        <b>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                <span style=" color:rebeccapurple"> © 2021</span> Copyright:Joe<span
+                    style=" color:orangered">Gakumo</span><span style=" color:palegreen"><i
+                        class="fas fa-heart"></i></span>
+
+            </div>
+        </b>
         <!-- Copyright -->
     </footer>
 
