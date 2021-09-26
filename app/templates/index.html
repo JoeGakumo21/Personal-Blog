@@ -15,14 +15,14 @@
     }
 </style>
 
-<h1 align="center">{% block header %}Posts{% endblock %}</h1>
+<h1 align="center" style="color:White">{% block header %}Posts Blog{% endblock %}</h1>
 <div id="posts">
     <div class="row mb-3">
         {% for post in posts %}
         <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
             <div class="card border-dark">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3>Posted by: {{post.user.username}}</h3>
+                    <h3 style="font-family: 'Charm', cursive;">Posted by: {{post.user.username}}</h3>
 
                     <div>
                         <span id="likes-count-{{post.id}}">
