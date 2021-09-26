@@ -16,6 +16,13 @@
 </style>
 
 <h1 align="center" style="color:White">{% block header %}Posts Blog{% endblock %}</h1>
+<div align="center">
+    <a href="/create-post">
+        <button type="button" class="btn btn-primary btn-lg">
+            Create a Post
+        </button>
+    </a>
+</div>
 <div id="posts">
     <div class="row mb-3">
         {% for post in posts %}
@@ -104,13 +111,6 @@
     </div>
 </div>
 {% block footer %}
-<div align="center">
-    <a href="/create-post">
-        <button type="button" class="btn btn-primary btn-lg">
-            Create a Post
-        </button>
-    </a>
-</div>
 <div class="container my-5">
 
     <footer class="bg-dark text-center text-white">

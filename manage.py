@@ -4,8 +4,8 @@ from flask_script import Manager,Server
 from app.models import Like, Quotes,Comment,Post,User
 
 # creating app instance
-app = create_app('development')
-# app = create_app('production')
+# app = create_app('development')
+app = create_app('production')
 
 
 migrate = Migrate(app,db)

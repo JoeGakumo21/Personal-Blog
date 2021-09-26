@@ -5,7 +5,7 @@ class Config:
 
     '''
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.urandom(32)
+    SECRET_KEY = 'joe12hsadjhnsdmas9122134144sa56c'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/personalblog'
     
@@ -17,6 +17,7 @@ class ProdConfig(Config):
         config:  The parent configuration class with General configuration settings
 
     '''
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 class DevConfig(Config):
     '''
     Development configuration child class
